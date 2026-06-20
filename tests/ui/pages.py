@@ -25,6 +25,7 @@ class ReviewerQueuePage(BasePage):
     def filter_by_status(self, status: str):
         self.page.select_option("#filterStatus", status)
         self.page.click("#btnApplyFilters")
+        self.page.wait_for_timeout(500) # wait for DOM update
 
     def get_row_count(self) -> int:
         return self.page.locator("#caseTableBody tr").count()

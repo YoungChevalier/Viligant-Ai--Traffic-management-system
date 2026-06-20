@@ -79,8 +79,10 @@ def mock_api(page: Page):
     Fixture that intercepts all API calls to localhost:8000 and localhost:8001
     and returns mock data. Applied automatically to each test.
     """
-    page.route("**/localhost:8000/**", _handle_api_route)
-    page.route("**/localhost:8001/**", _handle_api_route)
+    page.on("console", lambda msg: print(f"CONSOLE: {msg.text}"))
+    page.on("pageerror", lambda err: print(f"PAGEERROR: {err}"))
+
+    page.route("**/api/v1/**", _handle_api_route)
     yield page
 
 

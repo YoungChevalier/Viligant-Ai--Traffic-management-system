@@ -80,8 +80,7 @@ a:hover { color: var(--accent-indigo-hover); }
 
 /* ---------- Layout: Sidebar + Main ---------- */
 .layout {
-  display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
+  display: flex;
   min-height: 100vh;
 }
 
@@ -189,6 +188,8 @@ a:hover { color: var(--accent-indigo-hover); }
   margin-left: var(--sidebar-width);
   padding: var(--sp-xl);
   min-height: 100vh;
+  flex: 1;
+  min-width: 0;
 }
 
 .page-header {

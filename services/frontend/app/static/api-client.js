@@ -8,10 +8,11 @@
 
 // ── Configuration ──────────────────────────────────────────────────────────
 const CONFIG = {
-  DASHBOARD_API: "http://localhost:8000",
-  ANALYTICS_API: "http://localhost:8001",
-  REVIEWER_ID: "rev_operator_01",
-  USE_MOCKS: true, // Set true to force mock mode (skips network calls)
+  USE_MOCKS: false, // Set to false to allow Playwright to intercept real fetch calls
+  DASHBOARD_API: "/api/v1",
+  REVIEW_API: "/api/v1",
+  ANALYTICS_API: "/api/v1",
+  REVIEWER_ID: "rev_operator_01"
 };
 
 // ── Mock Data ──────────────────────────────────────────────────────────────
@@ -121,8 +122,8 @@ const ApiClient = {
       params.set("offset", offset);
       return await _apiFetch(CONFIG.DASHBOARD_API, `/incidents?${params}`);
     } catch (e) {
-      console.warn("[ApiClient] getIncidents failed, using mocks:", e.message);
-      return this._mockGetIncidents({ status, violation_type, camera_id, plate, start_date, end_date, limit, offset, sort_by, sort_dir });
+      console.error("[ApiClient] getIncidents failed:", e);
+      throw e;
     }
   },
 
