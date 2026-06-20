@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  ingestion:
+    build:
+      context: .
+      args:
+        SERVICE_NAME: ingestion
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_started
+
+  detection:
+    build:
+      context: .
+      args:
+        SERVICE_NAME: detection
+    ports:
+      - "8002:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./object_storage:/app/object_storage  # Mount mocked storage for access
+    depends_on:
+      redis:
+        condition: service_started
+
+  # Real Infrastructure Setup (Ready to replace mocks)
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-traffic_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  db_data:
+  redis_data:
