@@ -22,7 +22,7 @@ def test_reviewer_queue_accept_case(mock_api: Page):
         route.fulfill(status=200, body='{"status": "success"}')
         
     mock_api.route("**/review", intercept_review)
-    detail_page.accept_case(notes="Clear violation")
+    detail_page.submit_decision("APPROVE", notes="Clear violation")
     
     assert api_called["called"]
 
@@ -42,7 +42,7 @@ def test_reviewer_queue_reject_case(mock_api: Page):
         route.fulfill(status=200, body='{"status": "success"}')
         
     mock_api.route("**/review", intercept_review)
-    detail_page.reject_case(notes="False positive")
+    detail_page.submit_decision("REJECT", notes="False positive")
     assert api_called["called"]
 
 def test_search_filter_verify_results(mock_api: Page):

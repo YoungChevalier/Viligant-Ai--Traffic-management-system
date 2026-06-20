@@ -35,21 +35,11 @@ class ReviewerQueuePage(BasePage):
 class CaseDetailPage(BasePage):
     def wait_for_load(self):
         self.page.wait_for_selector(".detail-grid", state="attached")
-        
-    def accept_case(self, notes: str = ""):
+    def submit_decision(self, action: str, notes: str = ""):
         if notes:
             self.page.fill("#decisionNotes", notes)
-        self.page.click("button[data-decision='APPROVE']")
-
-    def reject_case(self, notes: str = ""):
-        if notes:
-            self.page.fill("#decisionNotes", notes)
-        self.page.click("button[data-decision='REJECT']")
-
-    def escalate_case(self, notes: str = ""):
-        if notes:
-            self.page.fill("#decisionNotes", notes)
-        self.page.click("button[data-decision='ESCALATE']")
+        # Using data-attribute for robust selector strategy
+        self.page.click(f"button[data-decision='{action}']")
 
 class AdminAssignmentPage(BasePage):
     def navigate(self):
