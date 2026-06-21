@@ -33,7 +33,10 @@
     M 53 35 A 2 2 0 1 1 53 39 A 2 2 0 1 1 53 35 Z
   " />
 </svg>
-                    <span class="logo-text">Vigilant AI</span>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Vigilant AI</span>
+                        <span class="logo-subtitle">Review Console</span>
+                    </div>
                 </div>
                 <button class="btn-icon mobile-close-btn" id="mobileCloseBtn" aria-label="Close sidebar">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -42,7 +45,7 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li>
-                        <a href="/static/index.html" class="nav-item active">
+                        <a href="/static/index.html" class="nav-item">
                             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                             <span class="nav-text">Dashboard</span>
                         </a>
@@ -61,7 +64,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/static/analytics.html" class="nav-item">
+                        <a href="/static/analytics.html" class="nav-item active">
                             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                             <span class="nav-text">Analytics</span>
                         </a>
@@ -123,10 +126,10 @@
                     <img src="/static/img/logo.png" alt="Vigilant AI" style="height: 32px; margin-right: 16px;">
                     
                     <!-- Utility / Additional Actions -->
-                    <button class="btn-icon header-action" id="quickDashboardBtn" aria-label="Quick action 1">
+                    <button class="btn-icon header-action" aria-label="Quick action 1">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
                     </button>
-                    <button class="btn-icon header-action" id="quickClockBtn" aria-label="Quick action 2">
+                    <button class="btn-icon header-action" aria-label="Quick action 2">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
                     </button>
 
@@ -233,10 +236,10 @@
                     <div class="dropdown-container">
                         <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false" aria-haspopup="true">
                             <div class="avatar">
-                                <span class="avatar-text">JD</span>
+                                <span class="avatar-text">RV</span>
                             </div>
                             <div class="user-details">
-                                <span class="user-name">Jane Doe</span>
+                                <span class="user-name">R. Vargas</span>
                                 <span class="user-role">Senior Reviewer</span>
                             </div>
                             <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -259,137 +262,198 @@
                 <div class="breadcrumbs-row">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumbs">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="/static/index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Analytics</li>
                         </ol>
                     </nav>
                 </div>
 
                 <!-- Main Content Area -->
-                <main class="main-content" id="dashboardMainArea">
+                <main class="main-content">
                     
                     <!-- Page Title Area -->
-                    <div class="page-title-area">
+                    <div class="page-title-area" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
                         <div class="page-title-content">
-                            <h1 class="page-title">Dashboard Overview</h1>
-                            <p class="page-subtitle">Welcome back. Here is the summary of today's traffic violations.</p>
+                            <h1 class="page-title">Analytics</h1>
+                            <p class="page-subtitle">Performance metrics and system-wide analytics.</p>
                         </div>
-                        <div class="page-actions">
-                            <button class="btn btn-secondary" id="exportBtn">Export Report</button>
-                            <button class="btn btn-primary" id="refreshBtn">Refresh Data</button>
+                        <div class="page-title-actions" style="display: flex; gap: 12px; align-items: center;">
+                            <div class="date-picker-wrap" style="position: relative;">
+                                <input type="text" class="input-field" value="Last 30 Days" readonly style="width: 140px; cursor: pointer; text-align: center;">
+                                <svg style="position: absolute; right: 10px; top: 10px; pointer-events: none; color: var(--color-text-muted);" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            </div>
+                            <button class="btn btn-primary" id="btnExportReport">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Export Report
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Placeholders Grid / Dashboard Grid -->
-                    <div class="content-placeholders" id="dashboardGridContainer">
+                    <!-- Top KPI Summary Row -->
+                    <div class="analytics-kpi-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                        <!-- KPI 1 -->
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Total Violations</div>
+                            <div class="kpi-value" id="kpiTotal">14,239</div>
+                            <div class="kpi-trend text-success"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> +12% vs last period</div>
+                        </div>
+                        <!-- KPI 2 -->
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Pending Review</div>
+                            <div class="kpi-value" id="kpiPending">8.4%</div>
+                            <div class="kpi-trend text-danger"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg> +2.1% vs last period</div>
+                        </div>
+                        <!-- KPI 3 -->
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Auto-Approval Rate</div>
+                            <div class="kpi-value" id="kpiAuto">64.2%</div>
+                            <div class="kpi-trend text-success"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> +5% vs last period</div>
+                        </div>
+                        <!-- KPI 4 -->
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Escalation Rate</div>
+                            <div class="kpi-value" id="kpiEscalate">3.1%</div>
+                            <div class="kpi-trend text-muted"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg> No change</div>
+                        </div>
+                        <!-- KPI 5 -->
+                        <div class="card kpi-card">
+                            <div class="kpi-label">ANPR Success Rate</div>
+                            <div class="kpi-value" id="kpiAnpr">98.7%</div>
+                            <div class="kpi-trend text-success"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> +0.3% vs last period</div>
+                        </div>
+                        <!-- KPI 6 -->
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Avg Turnaround Time</div>
+                            <div class="kpi-value" id="kpiTurnaround">2m 14s</div>
+                            <div class="kpi-trend text-success"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg> -12s vs last period</div>
+                        </div>
+                    </div>
+
+                    <!-- Filters & Insights Area -->
+                    <div class="analytics-filter-row" style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
+                        <div class="card filter-toolbar" style="flex: 1; padding: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                            <span style="font-size: 13px; color: var(--color-text-muted); font-weight: 500;">Filter Data:</span>
+                            <select class="input-field" id="filterType" style="width: 160px; height: 36px; max-width: 100%;">
+                                <option value="all">All Violation Types</option>
+                                <option value="helmet">Helmet Non-Compliance</option>
+                                <option value="redlight">Red-Light Violation</option>
+                                <option value="triple">Triple Riding</option>
+                                <option value="stopline">Stop-Line Violation</option>
+                                <option value="wrongside">Wrong-Side Driving</option>
+                                <option value="parking">Illegal Parking</option>
+                                <option value="speeding">Speeding</option>
+                            </select>
+                            <select class="input-field" id="filterCam" style="width: 160px; height: 36px; max-width: 100%;">
+                                <option value="all">All Cameras</option>
+                                <option value="cam-n01">CAM-North-01</option>
+                                <option value="cam-s04">CAM-South-04</option>
+                            </select>
+                            <select class="input-field" id="filterReviewer" style="width: 160px; height: 36px; max-width: 100%;">
+                                <option value="all">All Reviewers</option>
+                                <option value="rvargas">R. Vargas</option>
+                                <option value="asmith">A. Smith</option>
+                            </select>
+                        </div>
+                        <div class="card insights-panel" style="width: 320px; padding: 16px; display: flex; flex-direction: column; justify-content: center;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                <svg style="color: var(--color-primary);" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                <span style="font-weight: 600; font-size: 13px;">Automated Insight</span>
+                            </div>
+                            <p style="font-size: 13px; color: var(--color-text-muted); line-height: 1.4; margin: 0;" id="dynamicInsight">
+                                <strong>CAM-North-01</strong> had the highest concentration of red-light violations this week, contributing to 42% of total incidents.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Main Charts Grid -->
+                    <div class="analytics-charts-grid">
                         
-                        <!-- Summary Cards Row -->
-                        <div class="summary-cards-row">
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">📊</span>
-                                        <span class="kpi-trend trend-up" id="trendTotal">↑ 12% vs yesterday</span>
+                        <!-- Row 1 -->
+                        <div class="chart-row" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
+                            <!-- Trend Chart -->
+                            <div class="card chart-card">
+                                <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                                    <h3 style="font-size: 15px; font-weight: 600; margin: 0;">Violations Over Time</h3>
+                                    <div class="chart-toggles">
+                                        <button class="btn-text active" style="padding: 4px 8px; font-size: 12px;">7D</button>
+                                        <button class="btn-text" style="padding: 4px 8px; font-size: 12px;">30D</button>
+                                        <button class="btn-text" style="padding: 4px 8px; font-size: 12px;">90D</button>
                                     </div>
-                                    <span class="placeholder-text">Total Violations (Today)</span>
-                                    <span class="placeholder-value" id="kpiTotal">1,492</span>
+                                </div>
+                                <div class="chart-container" style="height: 280px; position: relative;">
+                                    <canvas id="trendChart"></canvas>
                                 </div>
                             </div>
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">⏱️</span>
-                                        <span class="kpi-trend trend-down" id="trendPending">↓ 5% vs avg</span>
-                                    </div>
-                                    <span class="placeholder-text">Pending Review</span>
-                                    <span class="placeholder-value" id="kpiPending">345</span>
+
+                            <!-- Violation Types -->
+                            <div class="card chart-card">
+                                <div class="chart-header" style="margin-bottom: 16px;">
+                                    <h3 style="font-size: 15px; font-weight: 600; margin: 0;">Violation Types</h3>
                                 </div>
-                            </div>
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">✅</span>
-                                        <span class="kpi-trend trend-up" id="trendApproved">↑ 3.1% of total</span>
-                                    </div>
-                                    <span class="placeholder-text">Auto-Approved</span>
-                                    <span class="placeholder-value" id="kpiApproved">980</span>
-                                </div>
-                            </div>
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">⚠️</span>
-                                        <span class="kpi-trend trend-neutral" id="trendEscalations">→ awaiting supervisor</span>
-                                    </div>
-                                    <span class="placeholder-text">Escalations</span>
-                                    <span class="placeholder-value" id="kpiEscalations">24</span>
+                                <div class="chart-container" style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                                    <canvas id="typeChart"></canvas>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Main Content Grid -->
-                        <div class="main-content-grid">
-                            
-                            <!-- Table/List Area -->
-                            <div class="card table-area">
-                                <div class="card-header">
-                                    <h2 class="card-title">Recent High-Confidence Detections</h2>
-                                    <button class="btn-icon" aria-label="More options">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                    </button>
+                        <!-- Row 2 -->
+                        <div class="chart-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+                            <!-- Top Cameras -->
+                            <div class="card chart-card">
+                                <div class="chart-header" style="margin-bottom: 16px;">
+                                    <h3 style="font-size: 15px; font-weight: 600; margin: 0;">Hotspot Cameras</h3>
                                 </div>
-                                <div class="card-body" style="padding: 0;">
-                                    <div class="detection-list-container">
-                                        <!-- Header row for detections -->
-                                        <div class="detection-row header">
-                                            <div class="col-id">Case ID</div>
-                                            <div class="col-type">Violation</div>
-                                            <div class="col-plate">Plate</div>
-                                            <div class="col-cam">Camera</div>
-                                            <div class="col-time">Time</div>
-                                            <div class="col-score">Score</div>
-                                            <div class="col-status">Status</div>
-                                        </div>
-                                        <div id="detectionsListBody">
-                                            <!-- Injected by mock-dashboard.js -->
-                                        </div>
-                                    </div>
-                                    <div class="placeholder-empty-state" id="detectionsEmptyState" style="display: none; padding: 40px; text-align: center; color: var(--color-text-muted);">
-                                        <p>No recent detections</p>
-                                    </div>
+                                <div class="chart-container" style="height: 240px; position: relative;">
+                                    <canvas id="cameraChart"></canvas>
                                 </div>
                             </div>
 
-                            <!-- Side Panel -->
-                            <div style="display: flex; flex-direction: column; gap: 24px;">
-                                <div class="card side-panel">
-                                    <div class="card-header">
-                                        <h2 class="card-title">Quick Actions</h2>
-                                    </div>
-                                    <div class="card-body" style="display: flex; flex-direction: column; gap: 12px;">
-                                        <a href="/static/review-queue.html" class="btn btn-secondary w-full" style="width: 100%;">Open Review Queue</a>
-                                        <a href="/static/search-records.html" class="btn btn-secondary w-full" style="width: 100%;">Search by Plate</a>
-                                        <a href="/static/review-queue.html" class="btn btn-secondary w-full" style="width: 100%;">View Escalations</a>
-                                        <button class="btn btn-secondary w-full" style="width: 100%;" id="generateSummaryBtn">Generate Daily Summary</button>
-                                    </div>
+                            <!-- Review Performance -->
+                            <div class="card chart-card">
+                                <div class="chart-header" style="margin-bottom: 16px;">
+                                    <h3 style="font-size: 15px; font-weight: 600; margin: 0;">Review Status Distribution</h3>
                                 </div>
-
-                                <div class="card side-panel">
-                                    <div class="card-header">
-                                        <h2 class="card-title">System Alerts</h2>
-                                    </div>
-                                    <div class="card-body" style="padding: 0;">
-                                        <div id="systemAlertsBody">
-                                            <!-- Injected by mock-dashboard.js -->
-                                        </div>
-                                        <div id="alertsEmptyState" style="display: none; padding: 20px; text-align: center; color: var(--color-text-muted);">
-                                            <p>No active alerts</p>
-                                        </div>
-                                    </div>
+                                <div class="chart-container" style="height: 240px; position: relative; display: flex; justify-content: center; align-items: center;">
+                                    <canvas id="statusChart"></canvas>
                                 </div>
                             </div>
 
+                            <!-- ANPR Quality -->
+                            <div class="card chart-card" style="display: flex; flex-direction: column;">
+                                <div class="chart-header" style="margin-bottom: 16px;">
+                                    <h3 style="font-size: 15px; font-weight: 600; margin: 0;">ANPR Confidence Breakdown</h3>
+                                </div>
+                                <div class="anpr-stats" style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+                                    <div class="anpr-row" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--color-success);"></div>
+                                            <span style="font-size: 13px; color: var(--color-text-main);">High (>90%)</span>
+                                        </div>
+                                        <span style="font-weight: 600;" id="anprHigh">85.4%</span>
+                                    </div>
+                                    <div class="anpr-row" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--color-warning);"></div>
+                                            <span style="font-size: 13px; color: var(--color-text-main);">Medium (70-90%)</span>
+                                        </div>
+                                        <span style="font-weight: 600;" id="anprMed">12.1%</span>
+                                    </div>
+                                    <div class="anpr-row" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--color-danger);"></div>
+                                            <span style="font-size: 13px; color: var(--color-text-main);">Low (<70%)</span>
+                                        </div>
+                                        <span style="font-weight: 600;" id="anprLow">2.5%</span>
+                                    </div>
+                                    <div style="height: 1px; background: var(--color-border); margin: 8px 0;"></div>
+                                    <div class="anpr-row" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 13px; color: var(--color-text-muted);">Failed / Unreadable</span>
+                                        <span style="font-weight: 600; color: var(--color-danger);" id="anprFail">124 records</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
                 </main>
@@ -398,7 +462,9 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/app.js"></script>
-    <script src="/static/mock-dashboard.js"></script>
+    <script src="/static/charts.js"></script>
+    <script src="/static/mock-analytics.js"></script>
 </body>
 </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Vigilant AI</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-body);
+        }
+        .login-card {
+            background-color: var(--bg-surface);
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-card h2 {
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            border-radius: 6px;
+        }
+        .error-msg {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>Vigilant AI Login</h2>
+        <div id="errorMsg" class="error-msg">Invalid credentials</div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" required placeholder="admin@vigilant.ai" value="admin@vigilant.ai">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" required placeholder="admin123" value="admin123">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Login</button>
+        </form>
+    </div>
+
+    <!-- Ensure api-client doesn't redirect us by defining a global or handling it -->
+    <script src="/static/api-client.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            try {
+                errorMsg.style.display = 'none';
+                await ApiClient.login(email, password);
+                window.location.href = '/static/index.html';
+            } catch (err) {
+                errorMsg.innerText = err.message || "Login failed";
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

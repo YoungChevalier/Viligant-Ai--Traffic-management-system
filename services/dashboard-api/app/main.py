@@ -12,14 +12,24 @@ def create_app() -> FastAPI:
         version="0.1.0",
     )
 
+    import os
+    cors_origin = os.getenv("CORS_ORIGIN", "*")
+    origins = [origin.strip() for origin in cors_origin.split(",")] if cors_origin != "*" else ["*"]
+
     # Enable CORS for frontend clients
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    from app.db.database import engine, Base
+    from app.models import domain # ensure models are loaded
+    
+    # Create tables
+    Base.metadata.create_all(bind=engine)
 
     register_routes(app)
 

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://traffic-dashboard-api.onrender.com/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/services/frontend/app/static/$1"
+    }
+  ]
+}

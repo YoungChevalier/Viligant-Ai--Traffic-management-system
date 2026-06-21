@@ -39,8 +39,16 @@ class CaseDetailPage(BasePage):
     def submit_decision(self, action: str, notes: str = ""):
         if notes:
             self.page.fill("#decisionNotes", notes)
-        # Using data-attribute for robust selector strategy
-        self.page.click(f"button[data-decision='{action}']")
+        
+        # Click the radio-style decision button
+        self.page.click(f"button[data-type='{action}']")
+        
+        # If REJECT or ESCALATE, we must select a reason before submitting
+        if action in ["REJECT", "ESCALATE"]:
+            self.page.select_option("#decisionReason", "OTHER")
+            
+        # Click the final submit button
+        self.page.click("#btnSubmitDecision")
 
 class AdminAssignmentPage(BasePage):
     def navigate(self):

@@ -33,7 +33,10 @@
     M 53 35 A 2 2 0 1 1 53 39 A 2 2 0 1 1 53 35 Z
   " />
 </svg>
-                    <span class="logo-text">Vigilant AI</span>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Vigilant AI</span>
+                        <span class="logo-subtitle">Review Console</span>
+                    </div>
                 </div>
                 <button class="btn-icon mobile-close-btn" id="mobileCloseBtn" aria-label="Close sidebar">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -42,7 +45,7 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li>
-                        <a href="/static/index.html" class="nav-item active">
+                        <a href="/static/index.html" class="nav-item">
                             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                             <span class="nav-text">Dashboard</span>
                         </a>
@@ -67,7 +70,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/static/cameras.html" class="nav-item">
+                        <a href="/static/cameras.html" class="nav-item active">
                             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                             <span class="nav-text">Cameras</span>
                         </a>
@@ -123,10 +126,10 @@
                     <img src="/static/img/logo.png" alt="Vigilant AI" style="height: 32px; margin-right: 16px;">
                     
                     <!-- Utility / Additional Actions -->
-                    <button class="btn-icon header-action" id="quickDashboardBtn" aria-label="Quick action 1">
+                    <button class="btn-icon header-action" aria-label="Quick action 1">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
                     </button>
-                    <button class="btn-icon header-action" id="quickClockBtn" aria-label="Quick action 2">
+                    <button class="btn-icon header-action" aria-label="Quick action 2">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
                     </button>
 
@@ -233,10 +236,10 @@
                     <div class="dropdown-container">
                         <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false" aria-haspopup="true">
                             <div class="avatar">
-                                <span class="avatar-text">JD</span>
+                                <span class="avatar-text">RV</span>
                             </div>
                             <div class="user-details">
-                                <span class="user-name">Jane Doe</span>
+                                <span class="user-name">R. Vargas</span>
                                 <span class="user-role">Senior Reviewer</span>
                             </div>
                             <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -259,146 +262,212 @@
                 <div class="breadcrumbs-row">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumbs">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item"><a href="/static/index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cameras</li>
                         </ol>
                     </nav>
                 </div>
 
                 <!-- Main Content Area -->
-                <main class="main-content" id="dashboardMainArea">
-                    
                     <!-- Page Title Area -->
-                    <div class="page-title-area">
+                    <div class="page-title-area" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
                         <div class="page-title-content">
-                            <h1 class="page-title">Dashboard Overview</h1>
-                            <p class="page-subtitle">Welcome back. Here is the summary of today's traffic violations.</p>
+                            <h1 class="page-title">Cameras</h1>
+                            <p class="page-subtitle">Monitor and manage connected camera endpoints and traffic-enforcement coverage.</p>
                         </div>
-                        <div class="page-actions">
-                            <button class="btn btn-secondary" id="exportBtn">Export Report</button>
-                            <button class="btn btn-primary" id="refreshBtn">Refresh Data</button>
+                        <div class="page-title-actions" style="display: flex; gap: 12px; align-items: center;">
+                            <span style="font-size: 13px; color: var(--color-text-muted);">Last updated: Just now</span>
+                            <button class="btn btn-secondary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Export
+                            </button>
+                            <button class="btn btn-primary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                Add Camera
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Placeholders Grid / Dashboard Grid -->
-                    <div class="content-placeholders" id="dashboardGridContainer">
+                    <!-- Top KPI Summary Row -->
+                    <div class="kpi-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Total Cameras</div>
+                            <div class="kpi-value">124</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Active</div>
+                            <div class="kpi-value text-success">118</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Offline / Maint.</div>
+                            <div class="kpi-value text-muted">4</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">With Alerts</div>
+                            <div class="kpi-value text-danger">2</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Violations Today</div>
+                            <div class="kpi-value">1,430</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Avg OCR Success</div>
+                            <div class="kpi-value text-success">96.8%</div>
+                        </div>
+                    </div>
+
+                    <!-- Filters & Search Area -->
+                    <div class="filter-toolbar card" style="padding: 16px; margin-bottom: 24px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        <div class="search-container" style="flex: 1; min-width: 250px; border: 1px solid var(--color-border); background: var(--color-bg-base); border-radius: 6px;">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="camSearch" class="search-input" placeholder="Search Camera ID or Location..." style="background: transparent;">
+                        </div>
+                        <select class="input-field" id="filterStatus" style="width: 140px; height: 36px; max-width: 100%;">
+                            <option value="all">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Degraded">Degraded</option>
+                        </select>
+                        <select class="input-field" id="filterZone" style="width: 140px; height: 36px; max-width: 100%;">
+                            <option value="all">All Zones</option>
+                            <option value="North">North Zone</option>
+                            <option value="South">South Zone</option>
+                            <option value="East">East Zone</option>
+                            <option value="West">West Zone</option>
+                        </select>
+                        <select class="input-field" id="filterHealth" style="width: 140px; height: 36px; max-width: 100%;">
+                            <option value="all">All Health</option>
+                            <option value="Healthy">Healthy</option>
+                            <option value="Warning">Warning</option>
+                            <option value="Critical">Critical</option>
+                        </select>
+                        <button class="btn-text" id="clearFiltersBtn" style="color: var(--color-text-muted);">Clear Filters</button>
+                    </div>
+
+                    <!-- Layout Container for Table & Detail Panel -->
+                    <div class="cameras-layout" id="camerasLayout">
                         
-                        <!-- Summary Cards Row -->
-                        <div class="summary-cards-row">
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">📊</span>
-                                        <span class="kpi-trend trend-up" id="trendTotal">↑ 12% vs yesterday</span>
-                                    </div>
-                                    <span class="placeholder-text">Total Violations (Today)</span>
-                                    <span class="placeholder-value" id="kpiTotal">1,492</span>
-                                </div>
+                        <!-- Left Side: Data Table / List -->
+                        <div class="cameras-list-container card">
+                            <!-- Desktop Table -->
+                            <div class="table-responsive hidden-mobile">
+                                <table class="data-table" id="camerasTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Camera ID</th>
+                                            <th>Location & Zone</th>
+                                            <th>Status / Health</th>
+                                            <th>Today's Violations</th>
+                                            <th>OCR Success</th>
+                                            <th>Last Sync</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="camerasTableBody">
+                                        <!-- Mock data injected here -->
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">⏱️</span>
-                                        <span class="kpi-trend trend-down" id="trendPending">↓ 5% vs avg</span>
-                                    </div>
-                                    <span class="placeholder-text">Pending Review</span>
-                                    <span class="placeholder-value" id="kpiPending">345</span>
-                                </div>
-                            </div>
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">✅</span>
-                                        <span class="kpi-trend trend-up" id="trendApproved">↑ 3.1% of total</span>
-                                    </div>
-                                    <span class="placeholder-text">Auto-Approved</span>
-                                    <span class="placeholder-value" id="kpiApproved">980</span>
-                                </div>
-                            </div>
-                            <div class="card summary-card">
-                                <div class="placeholder-content">
-                                    <div class="kpi-header">
-                                        <span class="placeholder-icon">⚠️</span>
-                                        <span class="kpi-trend trend-neutral" id="trendEscalations">→ awaiting supervisor</span>
-                                    </div>
-                                    <span class="placeholder-text">Escalations</span>
-                                    <span class="placeholder-value" id="kpiEscalations">24</span>
-                                </div>
+                            <!-- Mobile Cards -->
+                            <div class="mobile-cards-container visible-mobile" id="mobileCardsContainer">
+                                <!-- Mock cards injected here -->
                             </div>
                         </div>
 
-                        <!-- Main Content Grid -->
-                        <div class="main-content-grid">
-                            
-                            <!-- Table/List Area -->
-                            <div class="card table-area">
-                                <div class="card-header">
-                                    <h2 class="card-title">Recent High-Confidence Detections</h2>
-                                    <button class="btn-icon" aria-label="More options">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                    </button>
+                        <!-- Right Side: Slide-out Detail Panel -->
+                        <div class="camera-detail-panel card" id="cameraDetailPanel">
+                            <!-- Header -->
+                            <div class="detail-header" style="padding: 20px; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h2 style="margin: 0; font-size: 18px; font-weight: 600; font-family: 'Outfit', sans-serif;" id="detCamId">CAM-N-01</h2>
+                                    <p style="margin: 4px 0 0 0; font-size: 13px; color: var(--color-text-muted);" id="detLoc">Main Highway Northbound</p>
                                 </div>
-                                <div class="card-body" style="padding: 0;">
-                                    <div class="detection-list-container">
-                                        <!-- Header row for detections -->
-                                        <div class="detection-row header">
-                                            <div class="col-id">Case ID</div>
-                                            <div class="col-type">Violation</div>
-                                            <div class="col-plate">Plate</div>
-                                            <div class="col-cam">Camera</div>
-                                            <div class="col-time">Time</div>
-                                            <div class="col-score">Score</div>
-                                            <div class="col-status">Status</div>
-                                        </div>
-                                        <div id="detectionsListBody">
-                                            <!-- Injected by mock-dashboard.js -->
-                                        </div>
-                                    </div>
-                                    <div class="placeholder-empty-state" id="detectionsEmptyState" style="display: none; padding: 40px; text-align: center; color: var(--color-text-muted);">
-                                        <p>No recent detections</p>
-                                    </div>
-                                </div>
+                                <button class="btn-icon" id="closeDetailBtn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
                             </div>
 
-                            <!-- Side Panel -->
-                            <div style="display: flex; flex-direction: column; gap: 24px;">
-                                <div class="card side-panel">
-                                    <div class="card-header">
-                                        <h2 class="card-title">Quick Actions</h2>
+                            <!-- Body -->
+                            <div class="detail-body scroll-region" style="padding: 20px;">
+                                
+                                <div class="detail-section" style="margin-bottom: 24px;">
+                                    <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-muted); margin: 0 0 12px 0;">Status & Health</h3>
+                                    <div style="display: flex; gap: 8px; margin-bottom: 12px;" id="detStatusChips">
+                                        <!-- Injected -->
                                     </div>
-                                    <div class="card-body" style="display: flex; flex-direction: column; gap: 12px;">
-                                        <a href="/static/review-queue.html" class="btn btn-secondary w-full" style="width: 100%;">Open Review Queue</a>
-                                        <a href="/static/search-records.html" class="btn btn-secondary w-full" style="width: 100%;">Search by Plate</a>
-                                        <a href="/static/review-queue.html" class="btn btn-secondary w-full" style="width: 100%;">View Escalations</a>
-                                        <button class="btn btn-secondary w-full" style="width: 100%;" id="generateSummaryBtn">Generate Daily Summary</button>
+                                    <div class="meta-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                        <div>
+                                            <div class="meta-label">Last Heartbeat</div>
+                                            <div class="meta-value" id="detSync">Just now</div>
+                                        </div>
+                                        <div>
+                                            <div class="meta-label">Feed Quality</div>
+                                            <div class="meta-value" id="detQuality">1080p / 30fps</div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="card side-panel">
-                                    <div class="card-header">
-                                        <h2 class="card-title">System Alerts</h2>
-                                    </div>
-                                    <div class="card-body" style="padding: 0;">
-                                        <div id="systemAlertsBody">
-                                            <!-- Injected by mock-dashboard.js -->
+                                <div class="detail-section" style="margin-bottom: 24px;">
+                                    <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-muted); margin: 0 0 12px 0;">Performance Today</h3>
+                                    <div class="meta-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                                        <div>
+                                            <div class="meta-label">Violations Captured</div>
+                                            <div class="meta-value" style="font-size: 20px; font-weight: 700;" id="detViolations">142</div>
                                         </div>
-                                        <div id="alertsEmptyState" style="display: none; padding: 20px; text-align: center; color: var(--color-text-muted);">
-                                            <p>No active alerts</p>
+                                        <div>
+                                            <div class="meta-label">OCR Success Rate</div>
+                                            <div class="meta-value text-success" style="font-size: 20px; font-weight: 700;" id="detOcr">98.5%</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="meta-label">Primary Detections</div>
+                                        <div class="meta-value" id="detTypes">Red-Light, Speeding</div>
+                                    </div>
+                                </div>
+
+                                <div class="detail-section" style="margin-bottom: 24px;">
+                                    <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-muted); margin: 0 0 12px 0;">Mini Analytics</h3>
+                                    <div style="background: var(--color-bg-base); border-radius: 6px; padding: 16px; border: 1px solid var(--color-border);">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+                                            <span>OCR Confidence</span>
+                                            <span class="text-muted">High / Med / Low / Fail</span>
+                                        </div>
+                                        <div style="width: 100%; height: 8px; border-radius: 4px; display: flex; overflow: hidden;" id="detOcrBar">
+                                            <div style="background: var(--color-success); width: 85%;"></div>
+                                            <div style="background: var(--color-warning); width: 10%;"></div>
+                                            <div style="background: var(--color-danger); width: 3%;"></div>
+                                            <div style="background: var(--color-text-muted); width: 2%;"></div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="detail-section">
+                                    <h3 style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-muted); margin: 0 0 12px 0;">System Alerts</h3>
+                                    <div id="detAlerts">
+                                        <!-- Injected -->
+                                    </div>
+                                </div>
+
                             </div>
 
+                            <!-- Footer Actions -->
+                            <div class="detail-footer" style="padding: 16px 20px; border-top: 1px solid var(--color-border); display: flex; gap: 12px; background: var(--color-bg-base);">
+                                <button class="btn btn-secondary" style="flex: 1;" onclick="showToast('Camera feed paused.', 'warning')">Pause Feed</button>
+                                <button class="btn btn-secondary" style="flex: 1;" onclick="showToast('Camera marked for maintenance.', 'info')">Mark Maint.</button>
+                            </div>
                         </div>
+
                     </div>
 
                 </main>
+
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script src="/static/app.js"></script>
-    <script src="/static/mock-dashboard.js"></script>
+    <script src="/static/mock-cameras.js"></script>
 </body>
 </html>

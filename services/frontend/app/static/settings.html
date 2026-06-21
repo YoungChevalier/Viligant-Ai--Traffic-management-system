@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vigilant AI</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="app-layout">
+        
+        <!-- Mobile Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 100 100" class="logo-icon" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="
+    M 15 10 L 38 10 L 50 50 L 62 10 L 85 10 L 50 95 Z
+    M 15 40 Q 50 15 85 40 Q 50 65 15 40 Z
+    M 22 40 Q 50 22 78 40 Q 50 58 22 40 Z
+    M 26 40 Q 50 28 74 40 Q 50 52 26 40 Z
+    M 50 32 A 8 8 0 1 0 50 48 A 8 8 0 1 0 50 32 Z
+    M 53 35 A 2 2 0 1 1 53 39 A 2 2 0 1 1 53 35 Z
+  " />
+</svg>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Vigilant AI</span>
+                        <span class="logo-subtitle">Review Console</span>
+                    </div>
+                </div>
+                <button class="btn-icon mobile-close-btn" id="mobileCloseBtn" aria-label="Close sidebar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/static/index.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/static/review-queue.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            <span class="nav-text">Review Queue</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/static/search-records.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <span class="nav-text">Search Records</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/static/analytics.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                            <span class="nav-text">Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/static/cameras.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                            <span class="nav-text">Cameras</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/static/reviewers.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <span class="nav-text">Reviewers</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="nav-section-divider"></div>
+                
+                <ul>
+                    <li>
+                        <a href="/static/alerts.html" class="nav-item">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <span class="nav-text">Alerts Center</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/static/settings.html" class="nav-item active">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            <span class="nav-text">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="version">v2.1.0-stable</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn-icon sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    
+                    <div class="search-container">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" class="search-input" placeholder="Search plates, cases, cameras..." aria-label="Global search">
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <img src="/static/img/logo.png" alt="Vigilant AI" style="height: 32px; margin-right: 16px;">
+                    
+                    <!-- Utility / Additional Actions -->
+                    <button class="btn-icon header-action" aria-label="Quick action 1">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                    </button>
+                    <button class="btn-icon header-action" aria-label="Quick action 2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+                    </button>
+
+                    <!-- Theme Toggle -->
+                    <button class="btn-icon header-action" id="themeToggle" aria-label="Toggle dark mode">
+                        <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                    
+                    <!-- Notification Bell -->
+                    <div class="dropdown-container">
+                        <button class="btn-icon header-action" aria-label="Notifications" id="notificationBtn" aria-expanded="false" aria-haspopup="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                            <span class="notification-indicator"></span>
+                        </button>
+                        <!-- Notification Dropdown Placeholder -->
+                        <div class="dropdown-menu notification-menu" id="notificationDropdown">
+                            <div class="dropdown-header">Notifications</div>
+                            <div class="dropdown-item">No new notifications</div>
+                        </div>
+                    </div>
+                    
+                    <div class="header-divider"></div>
+                    
+                    <!-- User Profile -->
+                    <div class="dropdown-container">
+                        <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false" aria-haspopup="true">
+                            <div class="avatar">
+                                <span class="avatar-text">RV</span>
+                            </div>
+                            <div class="user-details">
+                                <span class="user-name">R. Vargas</span>
+                                <span class="user-role">Senior Reviewer</span>
+                            </div>
+                            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <!-- User Menu Placeholder -->
+                        <div class="dropdown-menu user-menu" id="userDropdown">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Preferences</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item text-danger">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Scrollable Region -->
+            <div class="scroll-region">
+                
+                <!-- Breadcrumbs Row -->
+                <div class="breadcrumbs-row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumbs">
+                            <li class="breadcrumb-item"><a href="/static/index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <!-- Main Content Area -->
+                <main class="main-content">
+                    
+                    <div class="page-title-area">
+                        <div class="page-title-content">
+                            <h1 class="page-title">Platform Settings</h1>
+                            <p class="page-subtitle">Manage global configuration and your personal preferences.</p>
+                        </div>
+                    </div>
+
+                    <!-- Settings Layout -->
+                    <div class="settings-layout">
+                        
+                        <!-- Left Nav -->
+                        <nav class="settings-nav" aria-label="Settings Navigation">
+                            <a href="#general" class="settings-nav-item active">General Settings</a>
+                            <a href="#workflow" class="settings-nav-item">Review Rules</a>
+                            <a href="#ocr" class="settings-nav-item">OCR / ANPR</a>
+                            <a href="#notifications" class="settings-nav-item">Notifications</a>
+                            <a href="#cameras" class="settings-nav-item">Camera Preferences</a>
+                            <a href="#roles" class="settings-nav-item">User / Role</a>
+                            <a href="#audit" class="settings-nav-item">Audit / Data</a>
+                        </nav>
+
+                        <!-- Content Sections -->
+                        <div class="settings-content">
+                            
+                            <!-- General Settings -->
+                            <section id="general" class="settings-section">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">General Settings</h2>
+                                    <p class="settings-section-desc">Manage your core platform preferences and regional defaults.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label for="platformName" class="form-label">Organization / Deployment Name</label>
+                                        <input type="text" id="platformName" class="form-control mock-setting" value="Vigilant AI Deployment 1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="defaultRegion" class="form-label">Operating Region</label>
+                                        <select id="defaultRegion" class="form-control mock-setting">
+                                            <option value="north">North Region</option>
+                                            <option value="south" selected>South Region</option>
+                                            <option value="east">East Region</option>
+                                            <option value="west">West Region</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="timeZone" class="form-label">Time Zone</label>
+                                        <select id="timeZone" class="form-control mock-setting">
+                                            <option value="utc">UTC</option>
+                                            <option value="est">Eastern Time (ET)</option>
+                                            <option value="pst">Pacific Time (PT)</option>
+                                            <option value="ist" selected>Indian Standard Time (IST)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dateFormat" class="form-label">Date/Time Display Format</label>
+                                        <select id="dateFormat" class="form-control mock-setting">
+                                            <option value="12" selected>MM/DD/YYYY, HH:MM AM/PM</option>
+                                            <option value="24">DD/MM/YYYY, HH:MM (24-hour)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="defaultLanguage" class="form-label">Default Language</label>
+                                        <select id="defaultLanguage" class="form-control mock-setting">
+                                            <option value="en" selected>English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                            <!-- Review Rules -->
+                            <section id="workflow" class="settings-section">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">Review Rules</h2>
+                                    <p class="settings-section-desc">Configure automation thresholds and manual reviewer queue behaviors.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label for="autoApproveThreshold" class="form-label">Auto-Flag Low Confidence Threshold (%)</label>
+                                        <input type="number" id="autoApproveThreshold" class="form-control mock-setting" value="85" min="0" max="100">
+                                        <span class="form-help">Violations with confidence below this value are automatically flagged for review.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Require Manual Review for Speeding Infractions</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="escThreshold" class="form-label">Escalation Threshold (Number of rejections)</label>
+                                        <input type="number" id="escThreshold" class="form-control mock-setting" value="2" min="1" max="10">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Mandatory Reject Reason Input</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting">
+                                                <span>Draft Autosave</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="queuePriority" class="form-label">Queue Priority Preference</label>
+                                        <select id="queuePriority" class="form-control mock-setting">
+                                            <option value="fifo">FIFO (Oldest First)</option>
+                                            <option value="severity" selected>Highest Severity First</option>
+                                            <option value="confidence">Lowest Confidence First</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                            <!-- OCR / ANPR Settings -->
+                            <section id="ocr" class="settings-section">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">OCR / ANPR Settings</h2>
+                                    <p class="settings-section-desc">Tune the underlying detection engine.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label for="ocrThreshold" class="form-label">OCR Confidence Threshold (%)</label>
+                                        <input type="number" id="ocrThreshold" class="form-control mock-setting" value="95" min="0" max="100">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Enable Plate Mismatch Alerts</span>
+                                            </div>
+                                        </label>
+                                        <span class="form-help">Trigger alert if vehicle class (e.g. Truck) conflicts with VAHAN registration database.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ocrRetry" class="form-label">Failed OCR Retry Strategy</label>
+                                        <select id="ocrRetry" class="form-control mock-setting">
+                                            <option value="1">1 Attempt</option>
+                                            <option value="3" selected>Up to 3 Attempts</option>
+                                            <option value="5">Up to 5 Attempts</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Enable Low-Light Processing Enhancement</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="detectSensitivity" class="form-label">Detection Sensitivity Level</label>
+                                        <select id="detectSensitivity" class="form-control mock-setting">
+                                            <option value="low">Low (Fewer False Positives)</option>
+                                            <option value="med" selected>Medium (Balanced)</option>
+                                            <option value="high">High (Maximum Capture)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                            <!-- Notifications Settings -->
+                            <section id="notifications" class="settings-section">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">Notifications</h2>
+                                    <p class="settings-section-desc">Control how and when alerts are broadcasted.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Send Push Notification for Critical Alerts</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Notify on Camera Offline (> 5 mins)</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting">
+                                                <span>Notify Supervisor on Reviewer Overload</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Generate Daily Summary Report</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="emailPref" class="form-label">Email Notification Frequency</label>
+                                        <select id="emailPref" class="form-control mock-setting">
+                                            <option value="realtime">Real-time</option>
+                                            <option value="hourly">Hourly Digest</option>
+                                            <option value="daily" selected>Daily Digest</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                            <!-- Camera Preferences -->
+                            <section id="cameras" class="settings-section">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">Camera Preferences</h2>
+                                    <p class="settings-section-desc">System parameters for physical hardware nodes.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label for="camHealth" class="form-label">Default Camera Health Threshold (%)</label>
+                                        <input type="number" id="camHealth" class="form-control mock-setting" value="90" min="0" max="100">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="camFeedDeg" class="form-label">Feed Degradation Warning (Packet Loss %)</label>
+                                        <input type="number" id="camFeedDeg" class="form-control mock-setting" value="5" min="1" max="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="camOffline" class="form-label">Offline Timeout Threshold (seconds)</label>
+                                        <input type="number" id="camOffline" class="form-control mock-setting" value="300" min="10" max="3600">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="camHeartbeat" class="form-label">Heartbeat Interval (seconds)</label>
+                                        <input type="number" id="camHeartbeat" class="form-control mock-setting" value="15" min="5" max="60">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Enable Maintenance Reminders (Every 90 days)</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                            <!-- User / Role Preferences -->
+                            <section id="roles" class="settings-section">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">User / Role Preferences</h2>
+                                    <p class="settings-section-desc">Configure assignment and approval behavior.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label for="assignMode" class="form-label">Reviewer Assignment Mode</label>
+                                        <select id="assignMode" class="form-control mock-setting">
+                                            <option value="auto" selected>Auto-Assign (Round Robin)</option>
+                                            <option value="skill">Skill-Based Routing</option>
+                                            <option value="manual">Manual Pull (Queue)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Require Supervisor Approval for Data Exports</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Enable Dynamic Workload Balancing</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="roleVis" class="form-label">Global Role Visibility</label>
+                                        <select id="roleVis" class="form-control mock-setting">
+                                            <option value="all">Everyone can see everyone</option>
+                                            <option value="sup" selected>Supervisors only</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                            <!-- Audit / Data Preferences -->
+                            <section id="audit" class="settings-section danger-zone">
+                                <div class="settings-section-header">
+                                    <h2 class="settings-section-title">Audit / Data Preferences</h2>
+                                    <p class="settings-section-desc">Manage data lifecycle, export formats, and system logs.</p>
+                                </div>
+                                <div class="settings-section-body">
+                                    <div class="form-group">
+                                        <label for="actRetention" class="form-label">Activity Log Retention (Days)</label>
+                                        <select id="actRetention" class="form-control mock-setting">
+                                            <option value="30">30 Days</option>
+                                            <option value="90" selected>90 Days</option>
+                                            <option value="365">1 Year</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exportFmt" class="form-label">Default Export Format</label>
+                                        <select id="exportFmt" class="form-control mock-setting">
+                                            <option value="csv" selected>CSV</option>
+                                            <option value="json">JSON</option>
+                                            <option value="pdf">PDF Report</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="auditVis" class="form-label">Audit Log Visibility</label>
+                                        <select id="auditVis" class="form-control mock-setting">
+                                            <option value="admin" selected>Admin Only</option>
+                                            <option value="sup">Supervisors & Admins</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input mock-setting" checked>
+                                                <span>Auto-Archive Closed Cases</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-border);">
+                                        <h3 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 8px;">Purge Storage</h3>
+                                        <p class="form-help" style="margin-bottom: 12px;">Permanently delete all evidence older than retention policy immediately. This cannot be undone.</p>
+                                        <button class="btn btn-danger" onclick="showToast('Storage Purge initiated.', 'warning')">Purge Old Evidence</button>
+                                    </div>
+                                </div>
+                                <div class="settings-section-footer" style="display:flex; justify-content:space-between; align-items:center;">
+                                    <button class="btn-text btn-reset">Reset to Defaults</button>
+                                    <button class="btn btn-primary btn-save" disabled>Save Changes</button>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/app.js"></script>
+    <script src="/static/mock-settings.js"></script>
+</body>
+</html>
