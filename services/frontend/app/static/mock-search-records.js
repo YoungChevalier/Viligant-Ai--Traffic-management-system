@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td><span class="status-chip ${getStatusClass(r.status)}">${r.status}</span></td>
                     <td>${r.reviewer}</td>
                     <td class="col-actions">
-                        <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); window.location.href='/static/case-detail.html?id=${r.id}'">View</button>
+                        <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); window.location.href='./case-detail.html?id=${r.id}'">View</button>
                     </td>
                 </tr>
             `).join('');

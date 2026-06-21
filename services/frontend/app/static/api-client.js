@@ -21,7 +21,7 @@ const ApiClient = {
 
   logout() {
     localStorage.removeItem("access_token");
-    window.location.href = "/static/login.html";
+    window.location.href = "./login.html";
   },
 
   async _fetch(path, options = {}) {

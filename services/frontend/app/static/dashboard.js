@@ -251,13 +251,13 @@
             </div>
           </div>
           <div class="card-body quick-actions">
-            <a href="/static/review-queue.html" class="quick-action-btn primary">Open review queue</a>
-            <a href="/static/search-records.html" class="quick-action-btn">Search by plate</a>
-            <a href="/static/violation-cases.html?status=ESCALATED" class="quick-action-btn">View escalated cases</a>
+            <a href="./review-queue.html" class="quick-action-btn primary">Open review queue</a>
+            <a href="./search-records.html" class="quick-action-btn">Search by plate</a>
+            <a href="./violation-cases.html?status=ESCALATED" class="quick-action-btn">View escalated cases</a>
             <button class="quick-action-btn" type="button" id="exportTodayBtn">Export today report</button>
             <div class="camera-status-banner">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span><strong>47 / 50</strong> cameras online — 3 cameras need attention. <a href="/static/cameras.html">Visit Cameras</a> to inspect.</span>
+              <span><strong>47 / 50</strong> cameras online — 3 cameras need attention. <a href="./cameras.html">Visit Cameras</a> to inspect.</span>
             </div>
           </div>
         </div>
