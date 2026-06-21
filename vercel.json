@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://traffic-dashboard-api.onrender.com/api/$1"
+      "destination": "https://traffic-dashboard-api-rd0l.onrender.com/api/$1"
     },
     {
       "source": "/(.*)",
