@@ -3630,3 +3630,59 @@ select.form-control {
     color: var(--color-primary);
     font-weight: 600;
 }
+
+/* --- Search Suggestions Dropdown --- */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background-color: var(--color-bg-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 6px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: var(--color-bg-hover, #f1f5f9);
+}
+
+.suggestion-icon {
+    color: var(--color-text-muted, #64748b);
+    display: flex;
+    align-items: center;
+}
+
+.suggestion-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-main, #0f172a);
+}
+
+.suggestion-subtitle {
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #64748b);
+}
+

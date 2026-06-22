@@ -122,4 +122,82 @@ document.addEventListener('DOMContentLoaded', () => {
     if (refreshBtn && typeof window.refreshDashboard === 'function') {
         refreshBtn.addEventListener('click', () => window.refreshDashboard());
     }
+
+    // --- Global Search Suggestions ---
+    const searchInput = document.querySelector('.search-input');
+    const searchSuggestions = document.getElementById('globalSearchSuggestions');
+
+    if (searchInput && searchSuggestions) {
+        // Mock data pool
+        const suggestionPool = [
+            { type: 'Plate', title: 'ABC-1234', subtitle: 'Speeding Violation' },
+            { type: 'Plate', title: 'XYZ-9876', subtitle: 'Red Light' },
+            { type: 'Case', title: 'CASE-2023-010', subtitle: 'Pending Review' },
+            { type: 'Case', title: 'CASE-2023-011', subtitle: 'Approved' },
+            { type: 'Camera', title: 'CAM-NORTH-01', subtitle: 'Intersection 5' },
+            { type: 'Camera', title: 'CAM-EAST-04', subtitle: 'Highway 9' },
+            { type: 'Plate', title: 'DEF-5566', subtitle: 'Illegal Parking' },
+        ];
+
+        let searchTimeout = null;
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (searchTimeout) clearTimeout(searchTimeout);
+            
+            if (query.length === 0) {
+                searchSuggestions.style.display = 'none';
+                return;
+            }
+
+            searchTimeout = setTimeout(() => {
+                const results = suggestionPool.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.subtitle.toLowerCase().includes(query) ||
+                    item.type.toLowerCase().includes(query)
+                );
+
+                if (results.length > 0) {
+                    searchSuggestions.innerHTML = results.map(r => `
+                        <div class="suggestion-item" onclick="window.location.href='#'">
+                            <div class="suggestion-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <div class="suggestion-content">
+                                <div class="suggestion-title">${r.title}</div>
+                                <div class="suggestion-subtitle">${r.type} &bull; ${r.subtitle}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                    searchSuggestions.style.display = 'block';
+                } else {
+                    searchSuggestions.innerHTML = `
+                        <div class="suggestion-item" style="cursor: default; justify-content: center; color: var(--text-muted);">
+                            No results found
+                        </div>
+                    `;
+                    searchSuggestions.style.display = 'block';
+                }
+            }, 300); // 300ms debounce
+        });
+
+        // Hide when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+        
+        // Show on focus if there's text
+        searchInput.addEventListener('focus', (e) => {
+            if (e.target.value.trim().length > 0 && searchSuggestions.innerHTML.trim() !== '') {
+                searchSuggestions.style.display = 'block';
+            }
+        });
+    }
 });
+
