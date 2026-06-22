@@ -185,7 +185,7 @@ button {
 }
 
 .mobile-close-btn {
-    display: none;
+    display: none !important;
 }
 
 .sidebar-nav {
@@ -833,7 +833,7 @@ a.dropdown-item:hover {
     }
 
     .mobile-close-btn {
-        display: flex;
+        display: flex !important;
     }
 
     /* Overlay */
