@@ -23,4 +23,5 @@ async def run_test():
     print(f"New Metrics: {job.get('new_metrics')}")
     print(f"New Version: {job.get('new_version', 'N/A')}")
 
-asyncio.run(run_test())
+if __name__ == "__main__":
+    asyncio.run(run_test())

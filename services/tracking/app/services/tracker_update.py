@@ -83,7 +83,7 @@ def update_tracker(
             "class_name": det["class_name"],
             "confidence": det["confidence"],
             "bbox": bbox,
-            "center": {"x": center[0], "y": center[1]},
+            "bbox_center": {"x": center[0], "y": center[1]},
         })
 
     tracker["next_track_id"] = next_id
@@ -107,7 +107,7 @@ def convert_tracker_output_to_tracked_objects(
             "class_name": trk["class_name"],
             "confidence": trk["confidence"],
             "bbox": trk["bbox"],
-            "center": trk["center"],
+            "bbox_center": trk["bbox_center"],
             "is_active": True,
         })
 

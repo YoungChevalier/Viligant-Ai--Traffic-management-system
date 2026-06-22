@@ -1,18 +1,7 @@
 import sys
 import asyncio
-from types import ModuleType
-
-# Mock libs.common_utils to bypass the hyphenated folder name issue for this test
-common_utils = ModuleType('libs.common_utils')
-time_utils = ModuleType('libs.common_utils.time_utils')
 import datetime
-time_utils.utc_now = datetime.datetime.now
-sys.modules['libs.common_utils'] = common_utils
-sys.modules['libs.common_utils.time_utils'] = time_utils
-
-id_utils = ModuleType('libs.common_utils.id_utils')
-id_utils.build_incident_id = lambda: "inc-test"
-sys.modules['libs.common_utils.id_utils'] = id_utils
+from unittest.mock import patch
 
 sys.path.insert(0, r'services\dashboard-api')
 
@@ -44,4 +33,8 @@ async def run():
     logs = await get_incident_audit_log('inc-1')
     print('Audit logs:', [log['action_type'] for log in logs])
 
-asyncio.run(run())
+if __name__ == "__main__":
+    with patch('libs.common_utils.time_utils.utc_now', return_value=datetime.datetime.now()), \
+         patch('libs.common_utils.id_utils.build_incident_id', return_value="inc-test"):
+        asyncio.run(run())
+
