@@ -341,20 +341,27 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFilters();
     });
 
-    // Boot
-    const boot = async () => {
-        queueMainArea.classList.add('dashboard-loading');
-        try {
-            MOCK_DATA = await ApiClient.getQueue();
-            currentData = [...MOCK_DATA];
-            updateCounts();
-            applyFilters();
-        } catch (e) {
-            console.error(e);
-            showToast("Failed to load queue");
-        } finally {
-            queueMainArea.classList.remove('dashboard-loading');
-        }
+    // Boot - use local mock data (backend not available on this deployment)
+    const DEMO_DATA = (() => {
+        const now = new Date();
+        const ago = (mins) => new Date(now - mins * 60000).toISOString();
+        return [
+            { id: "CASE-10924", type: "Helmet Non-Compliance", plate: "MH12AB1234", cam: "CAM-North-01", time: ago(3),  score: 97, status: "Pending",   assignee: "Unassigned", thumb: "🪖" },
+            { id: "CASE-10925", type: "Red-Light Violation",   plate: "DL4CAF5678", cam: "CAM-East-05",  time: ago(7),  score: 92, status: "Flagged",    assignee: "R. Vargas",  thumb: "🚦" },
+            { id: "CASE-10926", type: "Triple Riding",         plate: "KA01MG9012", cam: "CAM-South-04", time: ago(12), score: 85, status: "Pending",   assignee: "Unassigned", thumb: "🏍️" },
+            { id: "CASE-10927", type: "Stop-Line Violation",   plate: "TN09CD3456", cam: "CAM-North-08", time: ago(18), score: 99, status: "Escalated",  assignee: "Supervisor", thumb: "⛔" },
+            { id: "CASE-10928", type: "Helmet Non-Compliance", plate: "GJ05GH2345", cam: "CAM-West-02",  time: ago(25), score: 88, status: "Pending",   assignee: "Unassigned", thumb: "🪖" },
+            { id: "CASE-10929", type: "Wrong-Side Driving",    plate: "AP09IJ6789", cam: "CAM-East-12",  time: ago(31), score: 76, status: "Flagged",    assignee: "R. Vargas",  thumb: "⚠️" },
+            { id: "CASE-10930", type: "Red-Light Violation",   plate: "UP32KL0123", cam: "CAM-North-01", time: ago(45), score: 94, status: "Reviewed",   assignee: "R. Vargas",  thumb: "🚦" },
+            { id: "CASE-10931", type: "Illegal Parking",       plate: "HR26MN4567", cam: "CAM-South-04", time: ago(60), score: 81, status: "Reviewed",   assignee: "Auto",       thumb: "🅿️" },
+        ];
+    })();
+
+    const boot = () => {
+        MOCK_DATA = DEMO_DATA;
+        currentData = [...MOCK_DATA];
+        updateCounts();
+        applyFilters();
     };
     boot();
 });
