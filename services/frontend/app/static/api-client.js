@@ -38,12 +38,8 @@ const ApiClient = {
 
     const resp = await fetch(url, { ...options, headers });
     
-    if (resp.status === 401 && !path.includes("/auth/login")) {
-      this.logout();
-      throw new Error("Unauthorized");
-    }
-    
     if (!resp.ok) {
+        // In demo mode, never redirect on 401 — just throw so callers can use mock fallback
         let msg = resp.statusText;
         try { const errData = await resp.json(); msg = errData.detail || msg; } catch(e) {}
         throw new Error(`HTTP ${resp.status}: ${msg}`);
@@ -161,18 +157,11 @@ const ApiClient = {
   }
 };
 
-// Check auth on page load (unless on login page)
-if (!window.location.pathname.includes("login.html")) {
-    const currentToken = ApiClient.getToken();
-    if (!currentToken) {
-        ApiClient.logout();
-    } else if (currentToken.startsWith("mock_")) {
-        console.log("Using mock token, bypassing strict backend auth check on page load.");
-    } else {
-        // Strict verification for real tokens
-        ApiClient.getMe().catch((err) => {
-            console.error("Backend auth check failed, logging out:", err);
-            ApiClient.logout();
-        });
+// Demo mode: always ensure a mock token exists so pages load without login
+// Real auth would replace this with a proper session check
+(function ensureDemoSession() {
+    if (!ApiClient.getToken()) {
+        ApiClient.setToken("mock_admin_token");
+        console.log("Demo mode: mock session initialized.");
     }
-}
+})();
