@@ -44,7 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const pendingCount = counts.Pending + counts.Flagged;
         document.getElementById('headerQueueBadge').innerText = `${pendingCount} Pending`;
-        document.getElementById('navQueueBadge').innerText = pendingCount;
+        const navBadge = document.getElementById('navQueueBadge');
+        if (pendingCount > 0) {
+            navBadge.innerText = pendingCount;
+            navBadge.style.display = '';
+        } else {
+            navBadge.style.display = 'none';
+        }
     };
 
     // 3. Render Logic
